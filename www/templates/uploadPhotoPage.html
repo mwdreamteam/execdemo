@@ -1,0 +1,41 @@
+
+<ion-view title="UploadPhotoPage" hide-nav-bar="true" id="page7" style="background-color:#1B2842;">
+    <ion-content padding="true" class="manual-ios-statusbar-padding">
+        <form id="uploadPhotoForm" class="list" ng-submit="submitOrder(data)">
+              
+              <div class="ng-hide" ng-hide="canvasDiv" align="center">
+                 <div class="demo-container">
+                    <video id="video" width="350" height="200" preload autoplay loop muted controls></video>
+                    <canvas id="canvas" width="350" height="200"></canvas>
+                 </div>
+                 <!--a style="color:white;font-size:25px;" ng-click="takePhoto()"><i class="ion-ios-camera"></i> Take Photo!</a-->
+                 <button type="submit" style="font-weight:600;color:#FFFFFF;" ng-click="takePhoto()" class="button button-energized button-large    button-block">Take Photo!</button>
+                 
+              </div>
+
+             
+
+              <div class="ng-hide" ng-hide="photoDiv">   
+                <label class="item item-input item-floating-label" name="Action">
+                    <span class="input-label">Action</span>
+                    <input type="text" placeholder="Action" ng-model="data.action" id="action" style="color:white;">
+                </label> 
+                <div class="spacer" style="height:10px;"></div>
+                <label class="item item-input item-floating-label"  name="Instructions">
+                <input type="text" placeholder="Provide with instructions..." ng-model="data.instructions" id="instructions" style="color:white;height: 100px;">
+                </label>
+                <img align="middle" ng-src="{{base64Photo}}" style="margin-top:20px;margin-left:100px;" id="image"/>
+                <!--div id="show_images" style="width:auto;"></div-->
+              
+                <div class="spacer" style="height: 10px;"></div>
+                <button ui id="uploadPhoto-button11" type="submit" style="font-weight:600;color:#FFFFFF;" class="button button-energized button-large    button-block">Submit Order!</button>
+              </div>  
+             
+              <div ng-show="showResponse" align="center" style="color:white;">
+                <b ng-bind="response"></b><br>
+                <a style="color:white;font-size:15px;" ng-click="clearView()"><i class="ion-ios-home"></i> Submit a new Order</a>
+              </div>      
+                      
+        </form>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,30 @@
+<ion-view title="SendTextMessagePage" hide-nav-bar="true" id="page6" style="background-color:#1B2842;">
+    <ion-content padding="true" class="manual-ios-statusbar-padding">
+        <form id="sendTextVoiceMessageForm" class="list" ng-submit="sendTextVoiceMessage(message)">
+            <!--label class="item item-input item-floating-label" id="sendTextVoiceMessage-input2" name="From">
+                <span class="input-label">From</span>
+                <input type="tel" placeholder="From" ng-model="message.from" style="color:white;">
+            </label-->
+             <label class="item item-input item-floating-label" id="sendTextVoiceMessage-input4" name="To">
+                <span class="input-label">To</span>
+                <input type="tel" placeholder="To" ng-model="message.to" style="color:white;">
+            </label>
+            <div class="spacer" style="width: 300px; height: 10px;"></div>
+            <label class="item item-input item-floating-label" id="sendTextVoiceMessage-textarea1" name="Text">
+            <input type="text" placeholder="Your Message" ng-model="message.content" style="color:white;height: 100px;">
+                <!--textarea rows="10" cols="50" ng-model="message.content" placeholder="What a TadHack Day......." style="font-weight:600;color:black;text-align: justify;white-space: normal;"></textarea-->
+            </label>
+           
+           
+             <button ui id="sendRecordedMessagePage-button11" type="submit" style="font-weight:600;color:#FFFFFF;" class="button button-energized button-large button-block">Fire Text!
+             </button>
+           <div class="spacer" style="width: 300px; height: 10px;"></div>
+             <div ng-show="showResponse" align="center" style="color:white;">
+                <b ng-bind="response"></b>
+                <a style="color:white;font-size:15px;" href="#/page1/page2"><i class="ion-ios-home"></i> Send a new message</a>
+             </div>
+
+      </div>
+        </form>
+    </ion-content>
+</ion-view>

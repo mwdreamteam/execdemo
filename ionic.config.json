@@ -1,0 +1,10 @@
+{
+  "name": "sms-sender-app",
+  "app_id": "",
+   "proxies": [
+    {
+      "path": "/mobile/custom/TwilioWrapperAPIs/message",
+      "proxyUrl": "https://apacdemo2-apacdemo2.mobileenv.us2.oraclecloud.com:443/mobile/custom/TwilioWrapperAPIs/message"
+    }
+  ]
+}
