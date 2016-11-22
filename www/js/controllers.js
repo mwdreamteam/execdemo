@@ -31,69 +31,67 @@ function ($scope, $stateParams) {
 function ($scope, $stateParams, $http, $cordovaCamera, base64) {
 
 	document.addEventListener("deviceready", function () {
+		console.log("Device ready!");	
 
 		navigator.getUserMedia = navigator.getUserMedia ||
-	  navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+	  	navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
-	function successCallback(stream)
-	{
-	  window.stream = stream; // make stream available to console
-	  videoElement.src = window.URL.createObjectURL(stream);
-	  videoElement.play();
-	}
+		function successCallback(stream) {
+			var video = document.getElementById('video');
+		  window.stream = stream; // make stream available to console
+		  video.src = window.URL.createObjectURL(stream);
+		  video.play();
+		}
 
-	function errorCallback(error) {
-	  console.log('navigator.getUserMedia error: ', error);
-	}
+		function errorCallback(error) {
+		  console.log('navigator.getUserMedia error: ', error);
+		}
 
-	function gotSources(sourceInfos) {
-	  for (var i = 0; i !== sourceInfos.length; ++i) {
-	    var sourceInfo = sourceInfos[i];
-	    var option = document.createElement('option');
-	    option.value = sourceInfo.id;
-	    if (sourceInfo.kind === 'audio') {
-	      option.text = sourceInfo.label || 'microphone ' ;//+ (audioSelect.length + 1);
-	      //audioSelect.appendChild(option);
-	    } else if (sourceInfo.kind === 'video')
-			{
-				if (sourceInfo.facing == "environment")
+		function gotSources(sourceInfos) {
+		  for (var i = 0; i !== sourceInfos.length; ++i) {
+		    var sourceInfo = sourceInfos[i];
+		    var option = document.createElement('option');
+		    option.value = sourceInfo.id;
+		    if (sourceInfo.kind === 'audio') {
+		      option.text = sourceInfo.label || 'microphone ' ;//+ (audioSelect.length + 1);
+		      //audioSelect.appendChild(option);
+		    } else if (sourceInfo.kind === 'video')
 				{
-					var sourceNumber = sourceInfo.id;
-					var constraints =
+					console.log('We have a video source...');
+					if (sourceInfo.facing == "environment")
 					{
+						console.log('And it faces outwards...');
+						var sourceNumber = sourceInfo.id;
+						var constraints =
+						{
 							video: {
 								optional: [{
 									sourceId: sourceNumber
 								}]
 							}
 						};
+						console.log("That's it, we are using it!");
 
-					navigator.getUserMedia(constraints, successCallback, errorCallback);
-				}
+						navigator.getUserMedia(constraints, successCallback, errorCallback);
+						return;
+					}
 
-	    } else {
-	      console.log('Some other kind of source: ', sourceInfo);
-	    }
-	  }
-	}
+		    } else {
+		      console.log('Some other kind of source: ', sourceInfo);
+		    }
+		  }
+		}
 
-	if (typeof MediaStreamTrack === 'undefined'){
-	  alert('This browser does not support MediaStreamTrack.\n\nTry Chrome Canary.');
-	} else {
-	  MediaStreamTrack.getSources(gotSources);
-	}
+		if (typeof MediaStreamTrack === 'undefined'){
+		  alert('This browser does not support MediaStreamTrack.\n\nTry Chrome Canary.');
+		} else {
+		  MediaStreamTrack.getSources(gotSources);
+		}	
 
-
-	function successCallback(stream) {
-		var video = document.getElementById('video');
-	  window.stream = stream; // make stream available to console
-	  video.src = window.URL.createObjectURL(stream);
-	  video.play();
-	}
-
-  }, false);
+  	}, false);
 
 	$scope.$on("$ionicView.loaded", function() {
+			console.log("View Loaded!");
 
             var video = document.getElementById('video');
             var canvas = document.getElementById('canvas');
@@ -103,7 +101,7 @@ function ($scope, $stateParams, $http, $cordovaCamera, base64) {
             var tracker = new tracking.ColorTracker(['magenta', 'cyan', 'yellow']);
            // var tracker = new tracking.ColorTracker();
 
-            tracking.track('#video', tracker, { camera: true });
+            tracking.track('#video', tracker, { camera: false });
 
             tracker.on('track', function(event) {
               context.clearRect(0, 0, canvas.width, canvas.height);
@@ -260,7 +258,7 @@ function ($scope, $stateParams, $http, $cordovaCamera, base64) {
 	                        xhrFields: { withCredentials: true },
 	                        beforeSend: function (xhr) {
 	                            xhr.setRequestHeader ('Authorization',
-	                                                  '');
+	                                                  'Basic IHZpamF5a3VtYXIueWVubmVAb3JhY2xlLmNvbTpXZWJDZW50ZXIwMSM=');
 	                            xhr.setRequestHeader ('linkID',
 	                                                  'LFD48A8134FDF11DDEE725E97C38EE2EF7C48A5EA828');
 	                        },
@@ -288,7 +286,7 @@ function ($scope, $stateParams, $http, $cordovaCamera, base64) {
 									headers: {
 										 'Content-Type' : 'application/json',
 									     'Accept': 'application/json',
-									     'Authorization': ''
+									     'Authorization': 'Basic dmlqYXlrdW1hci55ZW5uZUBvcmFjbGUuY29tOldlYkNlbnRlcjAxIw=='
 									},
 									data: processMessagePayload
 								}
