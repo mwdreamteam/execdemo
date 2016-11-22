@@ -260,7 +260,7 @@ function ($scope, $stateParams, $http, $cordovaCamera, base64) {
 	                        xhrFields: { withCredentials: true },
 	                        beforeSend: function (xhr) {
 	                            xhr.setRequestHeader ('Authorization',
-	                                                  'Basic IHZpamF5a3VtYXIueWVubmVAb3JhY2xlLmNvbTpXZWJDZW50ZXIwMSM=');
+	                                                  '');
 	                            xhr.setRequestHeader ('linkID',
 	                                                  'LFD48A8134FDF11DDEE725E97C38EE2EF7C48A5EA828');
 	                        },
@@ -288,7 +288,7 @@ function ($scope, $stateParams, $http, $cordovaCamera, base64) {
 									headers: {
 										 'Content-Type' : 'application/json',
 									     'Accept': 'application/json',
-									     'Authorization': 'Basic dmlqYXlrdW1hci55ZW5uZUBvcmFjbGUuY29tOldlYkNlbnRlcjAxIw=='
+									     'Authorization': ''
 									},
 									data: processMessagePayload
 								}
